@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
@@ -16,36 +17,44 @@ import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
+import android.widget.TextView;
+
 public class ParkifiActivity extends MapActivity {
+
+  CurrentLocationOverlay mCurrentLocationOverlay;
+  MyLocationOverlay mMylocationOverlay;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Log.v("park", "onCreateActivity");
+
     setContentView(R.layout.activity_parkifi);
     MapView mapView = (MapView) findViewById(R.id.mapview);
+
+    TextView tv = (TextView) findViewById(R.id.textView1);
+    tv.setText("1337 m");
+
+    this.mCurrentLocationOverlay = new CurrentLocationOverlay(this, mapView, tv);
+    this.mMylocationOverlay = new MyLocationOverlay(this, mapView);
     mapView.setBuiltInZoomControls(true);
 
     List<Overlay> mapOverlays = mapView.getOverlays();
-    // Drawable marker = this.getResources().getDrawable(R.drawable.androidmarker);
     ParkOverlay parkOverlay = getParkOverlay();
+    // ParkifiOverlay parkifiOverlay = new ParkifiOverlay();
 
-    /*
-    GeoPoint point = new GeoPoint(42348200, 75189000);
-    OverlayItem overlayItem = new OverlayItem(point, "Hola, Mundo!", "I'm in newyork!");
+    mMylocationOverlay.enableCompass();
+    mMylocationOverlay.enableMyLocation();
 
-    OverlayItem overlayItem2 = new OverlayItem(new GeoPoint(19240000, -99120000), "sup", "dup");
+    mCurrentLocationOverlay.enableMyLocation();
 
-    GeoPoint point3 = new GeoPoint(35410000, 139460000);
-    OverlayItem overlayItem3 = new OverlayItem(point3, "Sekai, konichiwa!", "I'm in Japan!");
-
-    itemizedOverlay.addOverlay(overlayItem);
-    itemizedOverlay.addOverlay(overlayItem2);
-    itemizedOverlay.addOverlay(overlayItem3);
-    */
-
+    // mapOverlays.add(parkifiOverlay);
     mapOverlays.add(parkOverlay);
+    mapOverlays.add(mMylocationOverlay);
+    mapOverlays.add(mCurrentLocationOverlay);
   }
 
   public void initLocationSerices() {

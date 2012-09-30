@@ -3,4 +3,5 @@
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+    <item android:id="@+id/item1" android:title="Find Wifi Park" android:icon="@drawable/parkmarker" android:showAsAction="always" android:titleCondensed="Find Park"></item>
 </menu>
