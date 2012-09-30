@@ -10,14 +10,19 @@ import android.graphics.drawable.Drawable;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
-public class ParkifiItemizedOverlay extends ItemizedOverlay<OverlayItem> {
+public class ParkOverlay extends ItemizedOverlay<OverlayItem> {
 
   private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
   Context mContext;
 
-  public ParkifiItemizedOverlay(Drawable defaultMarker, Context context) {
+  public ParkOverlay(Drawable defaultMarker, Context context) {
     super(boundCenterBottom(defaultMarker));
     mContext = context;
+  }
+
+  public ParkOverlay(Context context) {
+    this(boundCenterBottom(context.getResources() .getDrawable(R.drawable.parkmarker)),
+        context);
   }
 
   public void addOverlay(OverlayItem overlay) {
@@ -43,6 +48,6 @@ public class ParkifiItemizedOverlay extends ItemizedOverlay<OverlayItem> {
     dialog.show();
 
     return false;
-    
+
   }
 }

@@ -1,5 +1,6 @@
 package com.sherwinyu.parkifi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.android.maps.GeoPoint;
@@ -8,7 +9,11 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+import android.content.Context;
+
 import android.graphics.drawable.Drawable;
+
+import android.location.LocationManager;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,9 +28,10 @@ public class ParkifiActivity extends MapActivity {
     mapView.setBuiltInZoomControls(true);
 
     List<Overlay> mapOverlays = mapView.getOverlays();
-    Drawable marker = this.getResources().getDrawable(R.drawable.androidmarker);
-    ParkifiItemizedOverlay itemizedOverlay = new ParkifiItemizedOverlay(marker, this);
+    // Drawable marker = this.getResources().getDrawable(R.drawable.androidmarker);
+    ParkOverlay parkOverlay = getParkOverlay();
 
+    /*
     GeoPoint point = new GeoPoint(42348200, 75189000);
     OverlayItem overlayItem = new OverlayItem(point, "Hola, Mundo!", "I'm in newyork!");
 
@@ -37,8 +43,20 @@ public class ParkifiActivity extends MapActivity {
     itemizedOverlay.addOverlay(overlayItem);
     itemizedOverlay.addOverlay(overlayItem2);
     itemizedOverlay.addOverlay(overlayItem3);
+    */
 
-    mapOverlays.add(itemizedOverlay);
+    mapOverlays.add(parkOverlay);
+  }
+
+  public void initLocationSerices() {
+    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+  }
+
+  public ParkOverlay getParkOverlay() {
+    ParkOverlay parkOverlay = new ParkOverlay(this);
+    for (Park park : Park.getParks())
+      parkOverlay.addOverlay(new ParkOverlayItem(park));
+    return parkOverlay;
   }
 
   @Override
