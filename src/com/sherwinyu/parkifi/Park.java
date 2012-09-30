@@ -34,6 +34,7 @@ public class Park {
     al.add(new Park(40.86315303600, -73.90655565970, "Devoe Park"));
     al.add(new Park(40.81770641630, -73.88132731720, "Hunts Points Riverside Par"));
     al.add(new Park(40.82848382300, -73.92265315470, "Joyce Kilmer Park"));
+    al.add(new Park(40.83848382300, -73.92265315470, "Joyce Kilmer Park"));
     return al;
   }
 

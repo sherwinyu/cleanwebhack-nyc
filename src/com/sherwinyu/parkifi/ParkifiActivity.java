@@ -1,22 +1,14 @@
 package com.sherwinyu.parkifi;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-
-import android.graphics.drawable.Drawable;
-
-import android.location.LocationManager;
 
 import android.net.Uri;
 import android.os.Bundle;

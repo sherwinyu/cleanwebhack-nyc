@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/about"
-        android:onClick="launchInfo"
+        android:onClick="launchInfo2"
  
              style="?android:attr/borderlessButtonStyle" />
 
