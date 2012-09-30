@@ -1,79 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/splashlogo"
-        android:layout_width="wrap_content"
-        android:layout_height="121dp"
-        android:gravity="top"
-        android:padding="@dimen/d"
-        android:src="@drawable/parkifilogowide" />
-
-   
-    <TextView 
-          android:id="@+id/parkInfoLabel"
-                  android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Nearest park:"
-          
-          />
-    <TextView 
-          android:id="@+id/parkInfo"
-                  android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-          
-          />
-           <Button
-        android:id="@+id/findPark"
-        android:text="Go!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-                     style="?android:attr/borderlessButtonStyle" 
-        
-        />
-      <Button
-        android:id="@+id/viewMap"
-        android:text="View Map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                             style="?android:attr/borderlessButtonStyle" 
-                
-        
-        />
-      
-          
-      <Button
-        android:id="@+id/about"
-        android:text="About"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                             style="?android:attr/borderlessButtonStyle" 
-                
-        
-        />
-        
-
-    <ImageView
+    <com.google.android.maps.MapView
+        android:id="@+id/mapview"
         android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:apiKey="0jfPsVlfSXXAfDrHJy_jSZLRWR7hu1fW16177Ag"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:contentDescription="wide logo"
-        
-                android:src="@drawable/parkmarker" />
-        
+        android:orientation="vertical"
+        android:background="#80BBBBBB"
+        android:padding="10dp"
+         >
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/splashlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="121dp"
+            android:gravity="top"
+            android:padding="@dimen/d"
+            android:src="@drawable/parkifilogowide" />
 
+        <TextView
+            android:id="@+id/parkInfoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Nearest park:" />
 
+        <TextView
+            android:id="@+id/parkInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
 
+        <Button
+            android:id="@+id/findPark"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Go!" />
+
+        <Button
+            android:id="@+id/viewMap"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="View Map" />
+
+        <Button
+            android:id="@+id/about"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="About" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="wide logo"
+            android:src="@drawable/parkmarker" />
+    </LinearLayout>
+
+</RelativeLayout>

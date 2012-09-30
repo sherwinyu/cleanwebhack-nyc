@@ -8,7 +8,21 @@ import android.location.Location;
  40.86315303600, -73.90655565970 ( Devoe Park)
  40.81770641630, -73.88132731720 ( Hunts Point Riverside Park)
  40.82848382300, -73.92265315470 ( Joyce Kilmer Park)
+
+40.70442736150, -73.99021779050 (Center of Brooklyn Bridge Park), http://www.nycgovparks.org/parks/brooklynbridgepark/
+40.70442736150, -73.99021779050 (Center of Brooklyn Bridge Park), http://www.nycgovparks.org/parks/brooklynbridgepark/
+40.66166594510, -73.97076951510 (Center of Prospect Park)
+40.69150404090, -73.97545411770 (Center of Fort Greene Park), http://www.nycgovparks.org/parks/FortGreenePark/
+40.70294027340, -74.01572662730 (Center of Battery Park), http://www.nycgovparks.org/parks/batterypark/history
+
+http://www.nycgovparks.org/parks/holcomberuckerpark/
+http://www.nycgovparks.org/parks/marcusgarveypark/
+http://www.nycgovparks.org/parks/thomasjeffersonpark/
+http://www.nycgovparks.org/parks/tompkinssquarepark/
+
+
  */
+
 
 public class Park {
   double lng;
