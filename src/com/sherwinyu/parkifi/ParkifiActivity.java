@@ -82,9 +82,24 @@ public class ParkifiActivity extends MapActivity {
     String daddr = "daddr=" + park.lat + "," + park.lng;
     Log.v("park", "urlhttp://maps.google.com/maps?" + saddr + "&" + daddr);
 
+    Intent i = getLaunchNavIntent(mCurrentLocationOverlay.lat, mCurrentLocationOverlay.lng, park.lat, park.lng);
+    startActivity(i);
+
+
+    /*
     Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
         Uri.parse("http://maps.google.com/maps?" + saddr + "&" + daddr));
     startActivity(intent);
+    */
+  }
+
+  public static Intent  getLaunchNavIntent(double slat, double slng, double dlat, double dlng) {
+    String saddr = "saddr=" + slat + "," + slng;
+    String daddr = "daddr=" + dlat + "," + dlng;
+    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+        Uri.parse("http://maps.google.com/maps?" + saddr + "&" + daddr));
+    return intent;
+
   }
 
   public Dialog onCreateDialog(int code, Bundle args) {
