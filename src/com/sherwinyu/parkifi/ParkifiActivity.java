@@ -10,26 +10,33 @@ import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 
 import android.graphics.drawable.Drawable;
 
 import android.location.LocationManager;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class ParkifiActivity extends MapActivity {
 
   CurrentLocationOverlay mCurrentLocationOverlay;
   MyLocationOverlay mMylocationOverlay;
+  ParkOverlay mParkOverlay;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Parkifi.activity = this;
     Log.v("park", "onCreateActivity");
 
     setContentView(R.layout.activity_parkifi);
@@ -43,8 +50,7 @@ public class ParkifiActivity extends MapActivity {
     mapView.setBuiltInZoomControls(true);
 
     List<Overlay> mapOverlays = mapView.getOverlays();
-    ParkOverlay parkOverlay = getParkOverlay();
-    // ParkifiOverlay parkifiOverlay = new ParkifiOverlay();
+    mParkOverlay = getParkOverlay();
 
     mMylocationOverlay.enableCompass();
     mMylocationOverlay.enableMyLocation();
@@ -52,13 +58,9 @@ public class ParkifiActivity extends MapActivity {
     mCurrentLocationOverlay.enableMyLocation();
 
     // mapOverlays.add(parkifiOverlay);
-    mapOverlays.add(parkOverlay);
+    mapOverlays.add(mParkOverlay);
     mapOverlays.add(mMylocationOverlay);
     mapOverlays.add(mCurrentLocationOverlay);
-  }
-
-  public void initLocationSerices() {
-    LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
   }
 
   public ParkOverlay getParkOverlay() {
@@ -78,5 +80,35 @@ public class ParkifiActivity extends MapActivity {
   protected boolean isRouteDisplayed() {
     return false;
   }
+
+  public void launchNavigation(View view) {
+    Log.v("park", "LaunchNavigation");
+    ParkOverlayItem parkOverlay = (ParkOverlayItem) mParkOverlay.getFocus();
+    Park park = parkOverlay.getPark();
+    Log.v("park", "LaunchNavigation toward park" + parkOverlay.getPark());
+    String saddr = "saddr=" + mCurrentLocationOverlay.lat + "," + mCurrentLocationOverlay.lng;
+    String daddr = "daddr=" + park.lat + "," + park.lng;
+    Log.v("park", "urlhttp://maps.google.com/maps?" + saddr + "&" + daddr);
+
+    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+        Uri.parse("http://maps.google.com/maps?" + saddr + "&" + daddr));
+    startActivity(intent);
+  }
+
+  public Dialog onCreateDialog(int code, Bundle args) {
+    Dialog dialog = new Dialog(this);
+    dialog.setTitle(args.getString("title"));
+    dialog.setContentView(R.layout.park_overlay_dialog);
+
+    ImageButton button = (ImageButton) dialog.findViewById(R.id.navigate);
+    button.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        launchNavigation(v);
+      }
+    });
+
+    return dialog;
+  }
+
 }
 

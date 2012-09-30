@@ -14,17 +14,17 @@ public class Park {
   String name;
   String description;
 
-  public Park(double lng, double lat) {
-    this(lng, lat, "[unnamed park]");
+  public Park(double lat, double lng) {
+    this(lat, lng, "[unnamed park]");
   }
 
-  public Park(double lng, double lat, String name) {
-    this(lng, lat, name, "");
+  public Park(double lat,  double lng, String name) {
+    this(lat, lng, name, "");
   }
 
-  public Park(double lng, double lat, String name, String description) {
-    this.lng = lng;
+  public Park(double lat, double lng, String name, String description) {
     this.lat = lat;
+    this.lng = lng;
     this.name = name;
     this.description = description;
   }
@@ -35,5 +35,9 @@ public class Park {
     al.add(new Park(40.81770641630, -73.88132731720, "Hunts Points Riverside Par"));
     al.add(new Park(40.82848382300, -73.92265315470, "Joyce Kilmer Park"));
     return al;
+  }
+
+  public String toString() {
+    return name + " " + description + " " + lat + " " + lng;
   }
 }
