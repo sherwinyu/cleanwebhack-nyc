@@ -80,7 +80,7 @@ public class ParkifiActivity extends MapActivity {
     Log.v("park", "LaunchNavigation toward park" + parkOverlay.getPark());
     String saddr = "saddr=" + mCurrentLocationOverlay.lat + "," + mCurrentLocationOverlay.lng;
     String daddr = "daddr=" + park.lat + "," + park.lng;
-    Log.v("park", "urlhttp://maps.google.com/maps?" + saddr + "&" + daddr);
+    Log.v("park", "urlhttp://maps.google.com/maps?" + saddr + "&" + daddr+"&dirflg=w");
 
     Intent i = getLaunchNavIntent(mCurrentLocationOverlay.lat, mCurrentLocationOverlay.lng, park.lat, park.lng);
     startActivity(i);
@@ -97,7 +97,7 @@ public class ParkifiActivity extends MapActivity {
     String saddr = "saddr=" + slat + "," + slng;
     String daddr = "daddr=" + dlat + "," + dlng;
     Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-        Uri.parse("http://maps.google.com/maps?" + saddr + "&" + daddr));
+        Uri.parse("http://maps.google.com/maps?" + saddr + "&" + daddr+"&dirflg=w"));
     return intent;
 
   }
@@ -107,12 +107,28 @@ public class ParkifiActivity extends MapActivity {
     dialog.setTitle(args.getString("title"));
     dialog.setContentView(R.layout.park_overlay_dialog);
 
-    ImageButton button = (ImageButton) dialog.findViewById(R.id.navigate);
-    button.setOnClickListener(new View.OnClickListener() {
+    ImageButton navButton = (ImageButton) dialog.findViewById(R.id.navigate);
+    navButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         launchNavigation(v);
       }
     });
+
+    ImageButton aboutButton  = (ImageButton) dialog.findViewById(R.id.info);
+    aboutButton.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+          ParkOverlayItem parkOverlay = (ParkOverlayItem) mParkOverlay.getFocus();
+          Park p = parkOverlay.getPark();
+          String url = p.description;
+          if (url == null) url = "http://www.nycgovparks.org/parks/";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        }
+    });
+
+
+    
 
     return dialog;
   }

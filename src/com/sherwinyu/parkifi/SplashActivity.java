@@ -75,7 +75,11 @@ public class SplashActivity extends MapActivity implements LocationListener {
       public void onClick(View v) {
 
         Animation animationOutTop = AnimationUtils.loadAnimation(v.getContext(), R.anim.anims);
-        animationOutTop.setDuration(2000);
+        animationOutTop.setDuration(700);
+
+        Animation animFade = AnimationUtils.loadAnimation(v.getContext(), R.anim.sliderighter);
+        animFade.setDuration(700);
+
         animationOutTop.setAnimationListener(new Animation.AnimationListener() {
 
           @Override
@@ -105,6 +109,7 @@ public class SplashActivity extends MapActivity implements LocationListener {
          */
         // animation.setDuration(800);
 
+        mBanner.startAnimation(animationOutTop);
         mBanner.startAnimation(animationOutTop);
 
         Log.v("park", "viewMap click");

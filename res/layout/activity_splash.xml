@@ -10,35 +10,48 @@
         android:layout_height="fill_parent"
         android:apiKey="0jfPsVlfSXXAfDrHJy_jSZLRWR7hu1fW16177Ag"
         android:clickable="true" />
-
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#80BBBBBB"
-        android:padding="10dp"
-         >
-
-        <ImageView
+ <ImageView
             android:id="@+id/splashlogo"
             android:layout_width="wrap_content"
             android:layout_height="121dp"
             android:gravity="top"
             android:padding="@dimen/d"
             android:src="@drawable/parkifilogowide" />
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="123dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+         
+        android:background="#80BBBBBB"
+        android:padding="10dp"
+         >
+
+       
 
         <TextView
             android:id="@+id/parkInfoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textStyle="bold"
+                                                android:textColor="#FFFFFF"
+            
             android:text="Nearest park:" />
 
         <TextView
             android:id="@+id/parkInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" 
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold"
+            
+                        android:textSize="20dp"
+            />
 
         <Button
             android:id="@+id/findPark"
@@ -46,6 +59,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+                                    android:textColor="#FFFFFF"
+            
+                        android:textSize="20dp"
+            android:textStyle="bold"
+            
             android:text="Go!" />
 
         <Button
@@ -54,6 +72,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+                                    android:textSize="20dp"
+                        android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            
             android:text="View Map" />
 
         <Button
@@ -62,7 +84,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="About" />
+            android:text="About"	
+                        android:textSize="20dp"
+                        android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            
+             />
 
         <ImageView
             android:layout_width="fill_parent"
